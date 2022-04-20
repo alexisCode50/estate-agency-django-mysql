@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.core.paginator import Paginator
 
 from .models import Propiedad, Publicacion
 
@@ -18,7 +19,17 @@ def about(request):
 	return render(request, 'estates/about.html')
 
 def properties(request):
-	propiedades = Propiedad.objects.all()
+	page = request.GET.get('page', 1)
+	lista_propiedades = Propiedad.objects.all()
+
+	paginator = Paginator(lista_propiedades, 10)
+
+	try:
+		propiedades = paginator.page(page)
+	except PageNotAnInteger:
+		propiedades = paginator.page(1)
+	except EmptyPage:
+		propiedades = paginator.page(paginator.num_pages)
 
 	context = {
 		'propiedades': propiedades,
@@ -36,7 +47,17 @@ def single_propety(request, id):
 	return render(request, 'estates/single-property.html', context)
 
 def blog(request):
-	publicaciones = Publicacion.objects.all()
+	page = request.GET.get('page', 1)
+	lista_publicaciones = Publicacion.objects.all()
+
+	paginator = Paginator(lista_publicaciones, 10)
+
+	try:
+		publicaciones = paginator.page(page)
+	except PageNotAnInteger:
+		publicaciones = paginator.page(1)
+	except EmptyPage:
+		publicaciones = paginator.page(paginator.num_pages)
 
 	context = {
 		'publicaciones': publicaciones,

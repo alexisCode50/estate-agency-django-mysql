@@ -231,27 +231,48 @@
         <div class="row">
           <div class="col-sm-12">
             <nav class="pagination-a">
+              {% if propiedades.has_other_pages %}
               <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">
-                    <span class="bi bi-chevron-left"></span>
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item next">
-                  <a class="page-link" href="#">
-                    <span class="bi bi-chevron-right"></span>
-                  </a>
-                </li>
+
+                {% if propiedades.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ propiedades.previous_page_number }}" tabindex="-1">
+                      <span class="bi bi-chevron-left"></span>
+                    </a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1">
+                      <span class="bi bi-chevron-left"></span>
+                    </a>
+                  </li>
+                {% endif %}
+                {% for i in propiedades.paginator.page_range %}
+                  {% if propiedades.number == i %}
+                    <li class="page-item active">
+                      <a class="page-link" href="#">{{ i }}</a>
+                    </li>
+                  {% else %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+                {% if propiedades.has_next %}
+                  <li class="page-item next">
+                    <a class="page-link" href="?page={{ propiedades.next_page_number }}">
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </li>
+                {% else %}
+                  <li class="page-item next disabled">
+                    <a class="page-link" href="#">
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </li>
+                {% endif %}
               </ul>
+              {% endif %}
             </nav>
           </div>
         </div>
