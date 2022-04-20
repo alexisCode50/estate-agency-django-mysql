@@ -24,6 +24,7 @@ class Propiedad(models.Model):
 	destacado = models.BooleanField()
 	portada = models.ImageField(upload_to='covers')
 	asesor = models.ForeignKey(User, on_delete=models.CASCADE)
+	fecha = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.titulo

@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404, render
 from .models import Propiedad, Publicacion
 
 def index(request):
-	propiedades = Propiedad.objects.all()
-	publicaciones = Publicacion.objects.all()
+	propiedades = Propiedad.objects.order_by('?')[:6]
+	publicaciones = Publicacion.objects.order_by('?')[:6]
 
 	context = {
 		'propiedades': propiedades,
