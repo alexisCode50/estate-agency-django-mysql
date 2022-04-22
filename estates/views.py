@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
 
-from .models import Propiedad, Publicacion
+from .models import Propiedad, Publicacion, Tipo
 
 def index(request):
 	propiedades = Propiedad.objects.order_by('?')[:6]
@@ -20,7 +20,27 @@ def about(request):
 
 def properties(request):
 	page = request.GET.get('page', 1)
-	lista_propiedades = Propiedad.objects.all()
+	busqueda = request.GET.get('busqueda')
+	tipo = request.GET.get('tipo') or 1
+	cuartos = request.GET.get('cuartos') or 1
+	baños = request.GET.get('baños') or 1
+
+	lista_propiedades = []
+	tipos = Tipo.objects.all()
+
+	if busqueda is not None and busqueda != '':
+		lista_propiedades = Propiedad.objects.filter(
+			titulo__icontains=busqueda,
+			tipo__gte=tipo,
+			detalles__cuartos__gte=cuartos,
+			detalles__baños__gte=baños
+		)
+	else:
+		lista_propiedades = Propiedad.objects.filter(
+			tipo__gte=tipo,
+			detalles__cuartos__gte=cuartos, 
+			detalles__baños__gte=baños
+		)
 
 	paginator = Paginator(lista_propiedades, 10)
 
@@ -32,6 +52,7 @@ def properties(request):
 		propiedades = paginator.page(paginator.num_pages)
 
 	context = {
+		'tipos': tipos,
 		'propiedades': propiedades,
 	}
 

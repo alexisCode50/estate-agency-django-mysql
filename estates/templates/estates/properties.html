@@ -82,62 +82,62 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-3">
-            <div class="row mb-5">
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label class="pb-2">Buscador</label>
-                  <input type="text" class="form-control form-control-a" placeholder="Ej: casa amueblada">
+            <form method="GET">
+              <div class="row mb-5">
+                <div class="col-12 mb-2">
+                  <div class="form-group">
+                    <label class="pb-2">Buscador</label>
+                    <input 
+                      type="text" 
+                      name="busqueda" 
+                      id="busqueda" 
+                      class="form-control form-control-a" 
+                      placeholder="Ej: casa amueblada"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 mb-2">
+                  <div class="form-group mt-3">
+                    <label class="pb-2" for="tipo">Tipo</label>
+                    <select name="tipo" id="tipo" class="form-control form-select form-control-a">
+                      <option value="">Elegir</option>
+                      {% for tipo in tipos %}
+                        <option value="{{ tipo.id }}">{{ tipo.nombre }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 mb-2">
+                  <div class="form-group mt-3">
+                    <label class="pb-2" for="cuartos">Cuartos</label>
+                    <select name="cuartos" id="cuartos" class="form-control form-select form-control-a">
+                      <option value="">Elegir</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 mb-2">
+                  <div class="form-group mt-3">
+                    <label class="pb-2" for="baños">Baños</label>
+                    <select name="baños" id="baños" class="form-control form-select form-control-a">
+                      <option value="">Elegir</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-b btn-sm">Filtrar</button>
                 </div>
               </div>
-              <div class="col-12 mb-2">
-                <div class="form-group mt-3">
-                  <label class="pb-2" for="Type">Tipo</label>
-                  <select class="form-control form-select form-control-a" id="Type">
-                    <option>All Type</option>
-                    <option>For Rent</option>
-                    <option>For Sale</option>
-                    <option>Open House</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group mt-3">
-                  <label class="pb-2" for="city">Ciudad</label>
-                  <select class="form-control form-select form-control-a" id="city">
-                    <option>All City</option>
-                    <option>Alabama</option>
-                    <option>Arizona</option>
-                    <option>California</option>
-                    <option>Colorado</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group mt-3">
-                  <label class="pb-2" for="bedrooms">Cuartos</label>
-                  <select class="form-control form-select form-control-a" id="bedrooms">
-                    <option>Any</option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group mt-3">
-                  <label class="pb-2" for="bathrooms">Baños</label>
-                  <select class="form-control form-select form-control-a" id="bathrooms">
-                    <option>Any</option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-b btn-sm">Filtrar</button>
-              </div>
-            </div>
+            </form>
           </div>
           <div class="col-12 col-md-9">
             <div class="row">
