@@ -25,6 +25,17 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'estates/assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Toastr -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <style>
+    .toast-success {
+      background-color: #2eca6a !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -234,21 +245,46 @@
               </div>
               <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
-                  <form class="form-a">
+                  <form onsubmit="contactAdviser(event)" id="form-contact-adviser" class="form-a">
+                    {% csrf_token %}
                     <div class="row">
                       <div class="col-md-12 mb-1">
+                        <input type="hidden" name="propiedad_id" value="{{ propiedad.id }}">
+                        <input type="hidden" name="asesor_id" value="{{ propiedad.asesor.id }}">
                         <div class="form-group">
-                          <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Nombre *" required>
+                          <input 
+                            type="text" 
+                            name="nombre"
+                            id="nombre" 
+                            class="form-control form-control-lg form-control-a" 
+                            placeholder="Nombre *" 
+                            required
+                          />
                         </div>
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                          <input 
+                            type="email"
+                            name="email"
+                            id="email" 
+                            class="form-control form-control-lg form-control-a" 
+                            placeholder="Email *" 
+                            required
+                           />
                         </div>
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Comentarios *" name="message" cols="45" rows="8" required></textarea>
+                          <textarea 
+                            name="comentarios"
+                            id="comentarios" 
+                            class="form-control" 
+                            placeholder="Comentarios *" 
+                            cols="45" 
+                            rows="8" 
+                            required
+                          ></textarea>
                         </div>
                       </div>
                       <div class="col-md-12 mt-3">
@@ -359,6 +395,7 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'estates/assets/js/main.js' %}"></script>
+  <script src="{% static 'estates/assets/js/sendMail.js' %}"></script>
 
 </body>
 </html>
