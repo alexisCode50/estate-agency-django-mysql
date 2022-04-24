@@ -11,4 +11,5 @@ urlpatterns = [
 	path('blog/', views.blog, name='blog'),
 	path('blog/<int:id>/', views.single_blog, name='single_blog'),
 	path('contact/', views.contact, name='contact'),
+	path('contact/company', views.contact_company, name='contact_company'),
 ]

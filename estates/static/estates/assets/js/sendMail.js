@@ -26,3 +26,33 @@ function contactAdviser(event) {
 		toastr.error('Ocurrio un error al enviar el mensaje, intentalo de nuevo')
 	})
 }
+
+function contactCompany(event) {
+	event.preventDefault()
+
+	const form = document.getElementById('form-contact-company')
+	const data = new FormData(form)
+
+	fetch('/contact/company', {
+		method: 'POST',
+		body: data,
+	})
+	.then(res => res.json())
+	.then(data => {
+		if (data.ok) {
+
+			$('#nombre').val('')
+			$('#email').val('')
+			$('#asunto').val('')
+			$('#mensaje').val('')
+
+			toastr.success(data.mensaje)
+			
+		} else {
+			toastr.error('Ocurrio un error al enviar el mensaje, intentalo de nuevo')
+		}
+	})
+	.catch(err => {
+		toastr.error('Ocurrio un error al enviar el mensaje, intentalo de nuevo')
+	})
+}

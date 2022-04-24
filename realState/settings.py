@@ -129,12 +129,12 @@ USE_TZ = True
 
 # Email
 
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-# EMAIL_HOST = 'smtp-relay.sendinblue.com'
-# EMAIL_HOST_USER = 'skrillex_ja14@hotmail.com'
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'skrillex_ja14@hotmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
 
 
 # Static files (CSS, JavaScript, Images)

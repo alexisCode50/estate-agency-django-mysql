@@ -144,6 +144,41 @@ def single_blog(request, id):
 def contact(request):
 	return render(request, 'estates/contact.html')
 
+def contact_company(request):
+	nombre = request.POST['nombre']
+	email = request.POST['email']
+	asunto = request.POST['asunto']
+	mensaje = request.POST['mensaje']
+	respuesta = {}
+
+	try:
+		mail = create_mail(
+			'skrillex_ja14@hotmail.com',
+			'Nuevo mensaje',
+			'company-mail.html',
+			{
+				'nombre': nombre,
+				'email': email,
+				'asunto': asunto,
+				'mensaje': mensaje,
+			}
+		)
+
+		mail.send(fail_silently=False)
+
+		respuesta = {
+			'ok': True,
+			'mensaje': 'El mensaje se envio con exito' 
+		}
+
+	except:
+		respuesta = {
+			'ok': False,
+			'mensaje': 'Ocurrio un error al enviar el mensaje, intentalo de nuevo' 
+		}
+
+	return JsonResponse(respuesta)
+
 def create_mail(user_mail, subject, template_name, context):
 	template = render_to_string('estates/' + template_name, context)
 

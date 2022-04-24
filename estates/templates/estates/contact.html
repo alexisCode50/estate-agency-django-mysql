@@ -23,6 +23,18 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'estates/assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Toastr -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <style>
+    .toast-success {
+      background-color: #2eca6a !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -91,37 +103,60 @@
           <div class="col-sm-12 section-t8">
             <div class="row">
               <div class="col-md-7">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <form onsubmit="contactCompany(event)" id="form-contact-company">
+                  {% csrf_token %}
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <input type="text" name="name" class="form-control form-control-lg form-control-a" placeholder="Nombre" required>
+                        <input 
+                          type="text" 
+                          name="nombre" 
+                          id="nombre" 
+                          class="form-control form-control-lg form-control-a" 
+                          placeholder="Nombre" 
+                          required 
+                        />
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <input name="email" type="email" class="form-control form-control-lg form-control-a" placeholder="Email" required>
+                        <input 
+                          type="email" 
+                          name="email" 
+                          id="email" 
+                          class="form-control form-control-lg form-control-a" 
+                          placeholder="Email" 
+                          required 
+                        />
                       </div>
                     </div>
                     <div class="col-md-12 mb-3">
                       <div class="form-group">
-                        <input type="text" name="subject" class="form-control form-control-lg form-control-a" placeholder="Nombre" required>
+                        <input 
+                          type="text" 
+                          name="asunto" 
+                          id="asunto" 
+                          class="form-control form-control-lg form-control-a" 
+                          placeholder="Asunto" 
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <textarea name="message" class="form-control" name="message" cols="45" rows="8" placeholder="Mensaje" required></textarea>
+                        <textarea 
+                          name="mensaje" 
+                          id="mensaje" 
+                          class="form-control" 
+                          name="message" 
+                          cols="45" 
+                          rows="8" 
+                          placeholder="Mensaje" 
+                          required
+                        ></textarea>
                       </div>
                     </div>
-                    <div class="col-md-12 my-3">
-                      <div class="mb-3">
-                        <div class="loading">Enviando</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">¡El mensaje se ha enviado con exito!</div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center mt-4">
                       <button type="submit" class="btn btn-a">Enviar Mensaje</button>
                     </div>
                   </div>
@@ -296,10 +331,10 @@
   <!-- Vendor JS Files -->
   <script src="{% static 'estates/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'estates/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'estates/assets/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Template Main JS File -->
   <script src="{% static 'estates/assets/js/main.js' %}"></script>
+  <script src="{% static 'estates/assets/js/sendMail.js' %}"></script>
 
 </body>
 
