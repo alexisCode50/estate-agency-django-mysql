@@ -137,20 +137,17 @@
               <div class="title-box">
                 <h2 class="title-a">Propiedades</h2>
               </div>
-              <div class="title-link">
-                <a href="{% url 'properties' %}">Todas las propiedades
+              <div class="title-link d-none d-md-block">
+                <a href="{% url 'properties' %}"> Ver más 
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
             </div>
           </div>
         </div>
-
         <div id="property-carousel" class="swiper">
           <div class="swiper-wrapper">
-
             {% for propiedad in propiedades %}
-
               <div class="carousel-item-b swiper-slide">
                 <div class="card-box-a card-shadow">
                   <div class="img-box-a">
@@ -197,13 +194,15 @@
                   </div>
                 </div>
               </div>
-
             {% endfor %}
-            
           </div>
         </div>
         <div class="propery-carousel-pagination carousel-pagination"></div>
-
+        <div class="title-link d-block d-md-none text-center">
+          <a href="{% url 'properties' %}"> Ver más 
+            <span class="bi bi-chevron-right"></span>
+          </a>
+        </div>
       </div>
     </section>
     <!-- End Latest Properties Section -->
@@ -217,18 +216,16 @@
               <div class="title-box">
                 <h2 class="title-a">Blog</h2>
               </div>
-              <div class="title-link">
-                <a href="{% url 'blog' %}">Todas las publicaciones
+              <div class="title-link d-none d-md-block">
+                <a href="{% url 'blog' %}">Ver más
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
             </div>
           </div>
         </div>
-
         <div id="news-carousel" class="swiper">
           <div class="swiper-wrapper">
-            
             {% for publicacion in publicaciones %}
               <div class="carousel-item-c swiper-slide">
                 <div class="card-box-b card-shadow news-box">
@@ -253,11 +250,14 @@
                 </div>
               </div>
             {% endfor %}
-
           </div>
         </div>
-
         <div class="news-carousel-pagination carousel-pagination"></div>
+        <div class="title-link d-block d-md-none text-center">
+          <a href="{% url 'blog' %}">Ver más
+            <span class="bi bi-chevron-right"></span>
+          </a>
+        </div>
       </div>
     </section>
     <!-- End Latest News Section -->
@@ -274,10 +274,8 @@
             </div>
           </div>
         </div>
-
         <div id="testimonial-carousel" class="swiper">
           <div class="swiper-wrapper">
-
             <div class="carousel-item-a swiper-slide">
               <div class="testimonials-box">
                 <div class="row">
@@ -305,7 +303,6 @@
                 </div>
               </div>
             </div><!-- End carousel item -->
-
             <div class="carousel-item-a swiper-slide">
               <div class="testimonials-box">
                 <div class="row">
@@ -333,11 +330,9 @@
                 </div>
               </div>
             </div><!-- End carousel item -->
-
           </div>
         </div>
         <div class="testimonial-carousel-pagination carousel-pagination"></div>
-
       </div>
     </section>
     <!-- End Testimonials Section -->
